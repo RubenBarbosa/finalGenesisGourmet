@@ -53,7 +53,7 @@ public class ModificarController implements Serializable {
     
     public String preModificar(Usuario u){
         setUsuarioSeleccionado(u);
-        return "/app/usuarios/editar.xhtml?faces-redirect=true";
+        return "/app/administrador/usuarios/listar.xhtml?faces-redirect=true";
     }
     
     public void cambioDeEstado(Usuario u){

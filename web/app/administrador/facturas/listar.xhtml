@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Facturas
+                        <small>Genesis Gourmet</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#{request.contextPath}/app/home.xhtml"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Ver Facuras</li>
+                    </ol>
+                </section>
+                <b:message for="listar-facturas" showSummary="true" show-detail="true"/>
+                <h:form id="listar-facturas" prependId="false">
+                    <section class="content">
+
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Ver Facturas</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>N�mero Pedido</th>
+                                            <th></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="#{listarFacturasController.facturas}" var="f">
+                                            <tr>
+                                                <td>#{f.idFactura}</td>
+                                                <td><h:outputText value="#{f.idPedido.toString()}"/></td>
+                                                <td>
+                                                    <!--<h:commandLink class="fa fa-eye btn btn-primary btn-sm"  value="" />-->
+                                                    <button type="button" class="btn btn-primary btn-sm fa fa-eye" data-toggle="modal" data-target="#modalSee"
+                                                            jsf:actionListener="#{verFacturaController.setFactura(f)}">
+                                                        <f:ajax event="click" render="info-modal-see"/>
+                                                    </button>
+                                                    <button type="button" class="btn btn-warning btn-sm fa fa-pencil" data-toggle="modal" data-target="#modalEdit"
+                                                            jsf:actionListener="#{modificarFacturasController.setFacturaseleccionada(f)}">
+                                                        <f:ajax event="click" render="info-modal-update"/>
+                                                    </button>
+
+                                                    <button type="button" class="btn btn-danger btn-sm fa fa-trash-o" data-toggle="modal" data-target="#myModal"
+                                                            jsf:actionListener="#{listarFacturasController.setFacturaSeleccionada(f)}">
+                                                        <f:ajax event="click" render="info-modal-delete"/>
+                                                    </button>
+                                                </td>
+
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                    <!--Inicio modal eliminar-->
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                                                    <h4 class="modal-title">Eliminacion</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h:panelGroup id="info-modal-delete" layout="block">
+                                                        <p>¿Está seguro de eliminar la factura #{listarFacturasController.facturaSeleccionada.idFactura}?</p>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <h:commandButton class="btn btn-danger" value="Eliminar" actionListener="#{listarFacturasController.eliminarFactura()}"/>
+                                                    <!--<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Fin modal eliminar-->
+                                    <!--Inicio modal actualizar-->
+                                   
+                                    <!--Fin modal actualizar-->
+                                    <!--Inicio modal ver-->
+                                    <div id="modalSee" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                                                    <h4 class="modal-title">Datos de la Factura</h4>
+                                                </div>
+                                                <div class="modal-bod">
+                                                    <h:panelGroup id="info-modal-see" layout="block">
+                                                        <b:panelGrid colSm="12" columns="2">
+                                                            <h:outputText style="font-weight: bold;" value="Id Factura:"/>
+                                                            <h:outputText value="#{verFacturaController.factura.idFactura}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Pedido:"/>
+                                                            <h:outputText value="#{verFacturaController.factura.idPedido}"/>
+                                                        </b:panelGrid>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-info" data-dismiss="modal" >Aceptar</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Fin modal ver-->
+                                </table>
+                            </div>
+
+                            <!-- /.box-body -->
+                        </div>
+
+                    </section>
+
+                </h:form>
+            </div>
+            <script>
+                $(function () {
+                    $("#example1").DataTable();
+                    $('#example2').DataTable({
+                        "paging": true,
+                        "lengthChange": false,
+                        "searching": false,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": false
+                    });
+                });
+            </script>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

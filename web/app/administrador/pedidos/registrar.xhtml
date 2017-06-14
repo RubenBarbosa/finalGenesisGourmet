@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Pedidos
+                        <small>Genesis Gourmet</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Registrar Pedido</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+                    <div class="col-md-8">
+                        <!-- Horizontal Form -->
+                        <div class="box box-info" style="margin-left: 180px;">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Registrar Pedido</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <b:message for="form-registro" showSummary="true" show-detail="true"/>
+                            <h:form class="form-horizontal" id="form-registro">
+
+                                <div class="col-md-9">
+                                    <div class="nav-tabs-custom">
+
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#activity" data-toggle="tab">Datos Mesa</a></li>
+                                            <li><a href="#settings" data-toggle="tab">Datos Pedido</a></li>
+                                        </ul>
+
+                                        <div class="tab-content">
+                                            <div class="active tab-pane" id="activity">
+
+                                                <h:form class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <br/>
+                                                        <label for="ambiente" class="col-sm-2 control-label">Ambiente</label>
+                                                        <div class="col-sm-9">
+                                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
+                                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                                            </b:selectOneMenu>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="mesa" class="col-sm-2 control-label">Mesa</label>
+
+                                                        <div class="col-sm-3">
+                                                            <h:inputText class="form-control" id="mesa" a:placeholder="No."/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="accion" class="col-sm-2 control-label">Accion</label>
+
+                                                        <div class="col-sm-3">
+                                                            <h:inputText class="form-control" id="accion" a:placeholder="No."/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="nombre" class="col-sm-2 control-label">Cliente</label>
+
+                                                        <div class="col-sm-10">
+                                                            <h:inputText class="form-control" id="nombre" a:placeholder="Nombre"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="apellido" class="col-sm-2 control-label">Cliente</label>
+
+                                                        <div class="col-sm-10">
+                                                            <h:inputText class="form-control" id="apellido" a:placeholder="Apellido"/>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                            <h:commandButton type="submit" class="btn btn-danger" value="#{msjApp.guardar}"></h:commandButton>
+                                                        </div>
+                                                    </div>
+                                                </h:form> 
+
+                                            </div>
+                                            <!-- /.tab-pane -->
+
+
+                                            <div class="tab-pane" id="settings">
+                                                <h:form class="form-horizontal">
+
+                                                    <div class="form-group">
+                                                        <br/>
+                                                         <label for="cantidad" class="col-sm-2 control-label">Buscar</label>
+                                                         <div class="col-sm-8">
+                                                        <h:inputText class="form-control" a:placeholder="#{msjApp.buscar}"/>
+<!--                                                        <span class="input-group-btn">
+                                                            <button type=   "submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                                                            </button>
+                                                        </span>-->
+                                                         </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        
+                                                        <label for="tipopr" class="col-sm-2 control-label">Tipo</label>
+                                                        <div class="col-sm-10">
+                                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
+                                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                                            </b:selectOneMenu>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="producto" class="col-sm-2 control-label">Producto</label>
+                                                        <div class="col-sm-10">
+                                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
+                                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                                            </b:selectOneMenu>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="cantidad" class="col-sm-2 control-label">Cantidad</label>
+
+                                                        <div class="col-sm-3">
+                                                            <h:inputText  class="form-control" id="cantidad" a:placeholder="No." value="#{registroController.nuevoUsuario.segundoNombre}"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="observacion" class="col-sm-2 control-label">Observacion</label>
+
+                                                        <div class="col-sm-10">
+                                                            <h:inputTextarea class="form-control" id="observacion" a:placeholder="Observacion del Pedido" value="#{registroController.nuevoUsuario.segundoNombre}"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                            <h:commandButton type="submit" class="btn btn-danger" value="#{msjApp.guardar}"></h:commandButton>
+                                                        </div>
+                                                    </div>
+                                                </h:form> 
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div>
+                                    <!-- /.nav-tabs-custom -->
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">                                  
+                                    <h:commandButton type="submit" class="btn btn-info pull-right" value="Guardar" action="#{registroController.registrar()}"/>
+                                </div>
+                                <!-- /.box-footer -->
+                            </h:form>
+                        </div>
+
+                        <!-- /.box -->
+                    </div>
+
+                </section>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+

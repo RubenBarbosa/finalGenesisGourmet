@@ -70,7 +70,7 @@ public class Pedido implements Serializable {
     private Usuario cedulaCapitan;
     @OneToMany(mappedBy = "idPedido", fetch = FetchType.LAZY)
     private List<Detallepedido> detallespedido;
-
+    
     public Pedido() {
     }
 
@@ -174,7 +174,7 @@ public class Pedido implements Serializable {
 
     @Override
     public String toString() {
-        return "com.genesis.modelo.entities.Pedido[ idPedido=" + idPedido + " ]";
+        return "N�mero de acci�n cliente: " +estadoPedido;
     }
     
 }
