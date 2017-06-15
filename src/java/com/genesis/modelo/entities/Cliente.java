@@ -148,7 +148,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "com.genesis.modelo.entities.Cliente[ cedulaCliente=" + cedulaCliente + " ]";
+        return  nombreCliente + " " +apellidoCliente;
     }
     
 }
