@@ -46,25 +46,15 @@ public class Ambiente implements Serializable {
     @Size(max = 25)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "pedidos_idPedido")
-    private int pedidosidPedido;
+    @Basic(optional = false)    
     @OneToMany(mappedBy = "idAmbiente", fetch = FetchType.LAZY)
     private List<Mesa> mesas;
-    @OneToMany(mappedBy = "idAmbiente", fetch = FetchType.LAZY)
-    private List<Pedido> pedidos;
 
     public Ambiente() {
     }
 
     public Ambiente(Integer idAmbiente) {
         this.idAmbiente = idAmbiente;
-    }
-
-    public Ambiente(Integer idAmbiente, int pedidosidPedido) {
-        this.idAmbiente = idAmbiente;
-        this.pedidosidPedido = pedidosidPedido;
     }
 
     public Integer getIdAmbiente() {
@@ -83,14 +73,6 @@ public class Ambiente implements Serializable {
         this.nombre = nombre;
     }
 
-    public int getPedidosidPedido() {
-        return pedidosidPedido;
-    }
-
-    public void setPedidosidPedido(int pedidosidPedido) {
-        this.pedidosidPedido = pedidosidPedido;
-    }
-
     @XmlTransient
     public List<Mesa> getMesas() {
         return mesas;
@@ -98,15 +80,6 @@ public class Ambiente implements Serializable {
 
     public void setMesas(List<Mesa> mesas) {
         this.mesas = mesas;
-    }
-
-    @XmlTransient
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
     }
 
     @Override
