@@ -27,6 +27,8 @@ public interface CalificacionFacadeLocal {
     List<Calificacion> findAll();
 
     List<Calificacion> findRange(int[] range);
+    
+    List<Long> cedulaMeseros();
 
     int count();
     

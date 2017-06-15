@@ -5,12 +5,88 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Calificar Meseros
+                        <small>Genesis Gourmet</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#{request.contextPath}app/home.xhtml?faces-redirect=true"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Registrar Calificacion</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+                    <div class="col-md-8">
+                        <!-- Horizontal Form -->
+                        <div class="box box-info" style="margin-left: 180px;">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Registrar Calificacion</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <!--<b:message for="form-registro" showSummary="true" show-detail="true"/>-->
+                            <b:message for="form-registro" showSummary="true" show-detail="true"/>
+                            <h:form class="form-horizontal" id="form-registro">
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <label for="tipopro" class="col-sm-2 control-label">Cedula Mesero</label>
+                                        <div class="col-sm-10">
+                                            
+                                            <b:selectOneMenu value="#{registroCalificacionController.nuevaCalificacion.cedulaMesero}">
+                                               <f:selectItems value="#{calificacionController.usuarios}" var="tp" itemLabel="#{tp.cedula}">
+                                                <h:outputText value="#{tp.cedula}"/>
+                                            </f:selectItems>
+                                            </b:selectOneMenu>
+                                            
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="descripcion" class="col-sm-2 control-label">Descripcion</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="descripcion" a:placeholder="Descipcion" value="#{registroCalificacionController.nuevaCalificacion.descripcion}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="fecha" class="col-sm-2 control-label">Fecha</label>
+
+                                        <div class="col-sm-10">
+
+                                            <h:inputText a:type="date" class="form-control" id="precio" a:placeholder="Precio" value="#{registroCalificacionController.nuevaCalificacion.fecha}"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">                                  
+                                    <h:commandButton type="submit" class="btn btn-info pull-right" value="Guardar" action="#{registroCalificacionController.registrar()}"/>
+                                </div>
+                                <!-- /.box-footer -->
+                            </h:form>
+                        </div>
+
+                        <!-- /.box -->
+                    </div>
+
+                </section>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+
 </html>

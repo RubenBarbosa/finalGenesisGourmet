@@ -6,6 +6,7 @@
 package com.genesis.modelo.facade;
 
 import com.genesis.modelo.entities.Calificacion;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,11 @@ public class CalificacionFacade extends AbstractFacade<Calificacion> implements 
 
     public CalificacionFacade() {
         super(Calificacion.class);
+    }
+
+    @Override
+    public List<Long> cedulaMeseros() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
