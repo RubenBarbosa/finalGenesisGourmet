@@ -54,21 +54,13 @@ and open the template in the editor.
                                                         <br/>
                                                         <label for="ambiente" class="col-sm-2 control-label">Ambiente</label>
                                                         <div class="col-sm-9">
-                                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
-                                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                                                <b:selectOneMenu value="#{registroPedidoController.nuevoPedido.idAmbiente}">
+                                                                    <f:selectItems value="#{listarAmbienteController.ambientes}" var="am" itemLabel="#{am.nombre}"/>
                                                             </b:selectOneMenu>
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label for="mesa" class="col-sm-2 control-label">Mesa</label>
-
-                                                        <div class="col-sm-3">
-                                                            <h:inputText class="form-control" id="mesa" a:placeholder="No."/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
+                                                   <div class="form-group">
                                                         <label for="accion" class="col-sm-2 control-label">Accion</label>
 
                                                         <div class="col-sm-3">
