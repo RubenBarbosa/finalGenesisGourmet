@@ -192,7 +192,7 @@ public class EnviarEmail {
         try {
            basic();
         
-            mimeMessage.setSubject(this.asunto);
+            mimeMessage.setSubject(this.asunto);    
             mimeMessage.setContent(this.contenido, "text/html");
             Transport transport = session.getTransport("smtp");
             transport.connect(getEmailRemitente(), getPassRemitente());
