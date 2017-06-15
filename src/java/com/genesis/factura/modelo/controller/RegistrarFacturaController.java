@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.genesis.facturas.modelo.controller;
+package com.genesis.factura.modelo.controller;
 
 import com.genesis.modelo.controller.util.MessageUtil;
 import com.genesis.modelo.entities.Factura;
