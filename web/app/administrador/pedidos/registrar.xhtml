@@ -59,12 +59,22 @@ and open the template in the editor.
                                                             </b:selectOneMenu>
                                                         </div>
                                                     </div>
-
-                                                   <div class="form-group">
-                                                        <label for="accion" class="col-sm-2 control-label">Accion</label>
-
-                                                        <div class="col-sm-3">
-                                                            <h:inputText class="form-control" id="accion" a:placeholder="No."/>
+                                                    <div class="form-group">
+                                                        <br/>
+                                                        <label for="cliente" class="col-sm-2 control-label">Cliente</label>
+                                                        <div class="col-sm-9">
+                                                            <b:selectOneMenu value="#{registroPedidoController.nuevoPedido.cedulaCliente}">
+                                                                <f:selectItems value="#{listarClienteController.clientes}" var="cl" itemLabel="#{cl.accion}"/>
+                                                            </b:selectOneMenu>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <br/>
+                                                        <label for="capitan" class="col-sm-2 control-label">Capit�n</label>
+                                                        <div class="col-sm-9">
+                                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.cedula}">
+                                                                <f:selectItems value="#{listarUsuariosController.usuarios}" var="us" itemLabel="#{us.primerNombre}"/>
+                                                            </b:selectOneMenu>
                                                         </div>
                                                     </div>
 
