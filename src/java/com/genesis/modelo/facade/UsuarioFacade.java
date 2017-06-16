@@ -6,6 +6,7 @@
 package com.genesis.modelo.facade;
 
 import com.genesis.modelo.entities.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -44,6 +45,23 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         } catch (Exception e) {
              System.out.println("No se encontro la consulta");
              e.getStackTrace();
+            return null;
+        }
+    }
+    
+     @Override
+    public List<Usuario> findByRol(int idRol) {
+
+        try {
+
+            getEntityManager().getEntityManagerFactory().getCache().evictAll();
+            TypedQuery<Usuario> q = getEntityManager().createNamedQuery("Usuario.findByRol", Usuario.class);
+            q.setParameter("idRol", idRol);
+            System.out.println("Se encontro la consulta findByRol");
+            return q.getResultList();
+        } catch (Exception e) {
+            System.out.println("No se encontro la consulta findByRol "+e.getMessage());
+            e.getStackTrace();
             return null;
         }
     }

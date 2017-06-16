@@ -45,7 +45,7 @@ public class Ambiente implements Serializable {
     @Size(max = 25)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)    
+//    @Basic(optional = false)    
     @OneToMany(mappedBy = "idAmbiente", fetch = FetchType.LAZY)
     private List<Mesa> mesas;
 

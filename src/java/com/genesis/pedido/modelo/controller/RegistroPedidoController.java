@@ -5,10 +5,13 @@
  */
 package com.genesis.pedido.modelo.controller;
 
+import com.genesis.modelo.controller.util.Constantes;
 import com.genesis.modelo.controller.util.MessageUtil;
 import com.genesis.modelo.entities.Pedido;
+import com.genesis.modelo.entities.Usuario;
 import com.genesis.modelo.facade.PedidoFacadeLocal;
 import com.genesis.modelo.facade.UsuarioFacadeLocal;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -24,7 +27,12 @@ public class RegistroPedidoController {
     @EJB
     private PedidoFacadeLocal pfl;
     
+    @EJB
+    private UsuarioFacadeLocal ufl;
+    
     private Pedido nuevoPedido;
+    
+    private List<Usuario> capitanes;
 
     public RegistroPedidoController() {
     }
@@ -32,6 +40,11 @@ public class RegistroPedidoController {
     @PostConstruct
     public void init(){
         nuevoPedido = new Pedido();
+        cargarCapitanes();
+    }
+    
+    private void cargarCapitanes(){        
+        capitanes = ufl.findByRol(Constantes.ROL_CAPITAN);
     }
 
     public Pedido getNuevoPedido() {
@@ -41,6 +54,16 @@ public class RegistroPedidoController {
     public void setNuevoPedido(Pedido nuevoPedido) {
         this.nuevoPedido = nuevoPedido;
     }
+
+    public List<Usuario> getCapitanes() {
+        return capitanes;
+    }
+
+    public void setCapitanes(List<Usuario> capitanes) {
+        this.capitanes = capitanes;
+    }
+    
+    
     
      public void registrar(){
         if(nuevoPedido != null){

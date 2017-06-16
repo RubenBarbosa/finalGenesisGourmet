@@ -72,8 +72,8 @@ and open the template in the editor.
                                                         <br/>
                                                         <label for="capitan" class="col-sm-2 control-label">Capit�n</label>
                                                         <div class="col-sm-9">
-                                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.cedula}">
-                                                                <f:selectItems value="#{listarUsuariosController.usuarios}" var="us" itemLabel="#{us.primerNombre}"/>
+                                                            <b:selectOneMenu value="#{registroPedidoController.nuevoPedido.cedulaCapitan}">
+                                                                <f:selectItems value="#{registroPedidoController.capitanes}" var="us" itemLabel="#{us.primerNombre}"/>
                                                             </b:selectOneMenu>
                                                         </div>
                                                     </div>
@@ -135,7 +135,7 @@ and open the template in the editor.
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">                                  
-                                    <h:commandButton type="submit" class="btn btn-info pull-right" value="Guardar" action="#{registroController.registrar()}"/>
+                                    <h:commandButton type="submit" class="btn btn-info pull-right" value="Guardar" action="#{registroPedidoController.registrar()}"/>
                                 </div>
                                 <!-- /.box-footer -->
                             </h:form>
@@ -151,4 +151,3 @@ and open the template in the editor.
     </ui:composition>
 
 </html>
-

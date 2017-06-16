@@ -32,4 +32,6 @@ public interface UsuarioFacadeLocal {
     
     Usuario login (Long cedula, String clave);
     
+    List<Usuario> findByRol(int idRol);
+    
 }

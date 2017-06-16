@@ -44,7 +44,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuario.findByDireccion", query = "SELECT u FROM Usuario u WHERE u.direccion = :direccion")
     , @NamedQuery(name = "Usuario.findByClave", query = "SELECT u FROM Usuario u WHERE u.clave = :clave")
     , @NamedQuery(name = "Usuario.findByArea", query = "SELECT u FROM Usuario u WHERE u.area = :area")
-    , @NamedQuery(name = "Usuario.findByEstado", query = "SELECT u FROM Usuario u WHERE u.estado = :estado")})
+    , @NamedQuery(name = "Usuario.findByEstado", query = "SELECT u FROM Usuario u WHERE u.estado = :estado")
+    , @NamedQuery(name = "Usuario.findByRol", query = "SELECT u FROM Usuario u INNER JOIN u.rolesusuario r WHERE r.idRol.idRol = :idRol")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
