@@ -23,7 +23,7 @@ import javax.ejb.EJB;
 public class ModificarProductoController implements Serializable {
 
     @EJB
-    private ProductoFacadeLocal ufl;
+    private ProductoFacadeLocal pfl;
     
     private Producto productoSeleccionado;
     
@@ -33,14 +33,6 @@ public class ModificarProductoController implements Serializable {
     public ModificarProductoController() {
     }
 
-    public ProductoFacadeLocal getUfl() {
-        return ufl;
-    }
-
-    public void setUfl(ProductoFacadeLocal ufl) {
-        this.ufl = ufl;
-    }
-
     public Producto getProductoSeleccionado() {
         return productoSeleccionado;
     }
@@ -48,16 +40,18 @@ public class ModificarProductoController implements Serializable {
     public void setProductoSeleccionado(Producto productoSeleccionado) {
         this.productoSeleccionado = productoSeleccionado;
     }
+    
+
        
     public void actulaizarDatos(){
         try {
-            Producto producto = null;
-            ufl.edit(producto);
-            MessageUtil.enviarMensajeInformacion("listar-productos", "Actualización", "Los datos del producto se han actualizado correctamente.");
+            pfl.edit(productoSeleccionado);
+            MessageUtil.enviarMensajeInformacion("listar-productos", "Actualización", "Los datos se han actualizado correctamente.");
         } catch (Exception e) {
-            MessageUtil.enviarMensajeErrorGlobal("Error al modificar los datos del producto", e.getStackTrace().toString());
+            MessageUtil.enviarMensajeErrorGlobal("Error al modificar los datos", e.getStackTrace().toString());
         }
     }
+    
     public String preModificar(Producto p){
         setProductoSeleccionado(p);
         return "/app/administrador/productos/listar.xhtml?faces-redirect=true";

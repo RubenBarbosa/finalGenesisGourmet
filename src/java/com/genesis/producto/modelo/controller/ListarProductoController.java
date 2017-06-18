@@ -63,15 +63,12 @@ public class ListarProductoController implements Serializable {
     }
 
     public void setProductoSeleccionado(Producto productoSeleccionado) {
-        System.out.println("hdjsahjdhsajkdhjksahd - " + productoSeleccionado.getIdProducto());
         this.productoSeleccionado = productoSeleccionado;
     }
 
     public void eliminarProducto() {
-        Producto producto = null;
-//        System.out.println("Voy a eliminar el producto: " + productoSeleccionado.getPrimerNombre());
         ufl.remove(productoSeleccionado);
         recargarProductos();
-        MessageUtil.enviarMensajeInformacion("listar-productos", "Eliminacion correcta", "El producto se ha eliminado correctamente.");
+        MessageUtil.enviarMensajeInformacion("editar-productos", "Eliminacion correcta", "El producto se ha eliminado correctamente.");
     }
 }

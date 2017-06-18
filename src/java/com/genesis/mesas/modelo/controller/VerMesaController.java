@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.genesis.producto.modelo.controller;
+package com.genesis.mesas.modelo.controller;
 
-import com.genesis.modelo.entities.Producto;
-import com.genesis.modelo.facade.ProductoFacadeLocal;
+import com.genesis.mesas.modelo.controller.*;
+import com.genesis.modelo.entities.Mesa;
+import com.genesis.modelo.facade.MesaFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -21,32 +22,32 @@ import javax.faces.view.ViewScoped;
  *
  * @author Mateo
  */
-@Named(value = "verProductoController")
+@Named(value = "verMesaController")
 @SessionScoped //Debemos cambiarlo a @ConversationScoped
-public class VerProductoController implements Serializable{
+public class VerMesaController implements Serializable{
 
-    private Producto producto;
+    private Mesa mesa;
     /**
      * Creates a new instance of ListarUsuariosController
      */
-    public VerProductoController() {
+    public VerMesaController() {
     }
     
     @PostConstruct
     public void init(){
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Mesa getMesa() {
+        return mesa;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
     }
 
-    public String verProducto(Producto u){
-        this.producto = u;
-        return "/app/administrador/productos/ver.xhtml?faces-redirect=true";
+    public String verMesa(Mesa u){
+        this.mesa = u;
+        return "/app/administrador/mesas/ver.xhtml?faces-redirect=true";
     }
     
     

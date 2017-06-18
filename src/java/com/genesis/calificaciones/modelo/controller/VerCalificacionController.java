@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.genesis.producto.modelo.controller;
+package com.genesis.calificaciones.modelo.controller;
 
-import com.genesis.modelo.entities.Producto;
-import com.genesis.modelo.facade.ProductoFacadeLocal;
+import com.genesis.modelo.entities.Calificacion;
+import com.genesis.modelo.facade.CalificacionFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -21,32 +21,32 @@ import javax.faces.view.ViewScoped;
  *
  * @author Mateo
  */
-@Named(value = "verProductoController")
+@Named(value = "verCalificacionController")
 @SessionScoped //Debemos cambiarlo a @ConversationScoped
-public class VerProductoController implements Serializable{
+public class VerCalificacionController implements Serializable{
 
-    private Producto producto;
+    private Calificacion calificacion;
     /**
      * Creates a new instance of ListarUsuariosController
      */
-    public VerProductoController() {
+    public VerCalificacionController() {
     }
     
     @PostConstruct
     public void init(){
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Calificacion getCalificacion() {
+        return calificacion;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setCalificacion(Calificacion calificacion) {
+        this.calificacion = calificacion;
     }
 
-    public String verProducto(Producto u){
-        this.producto = u;
-        return "/app/administrador/productos/ver.xhtml?faces-redirect=true";
+    public String verCalificacion(Calificacion c){
+        this.calificacion = c;
+        return "/app/administrador/calificaciones/ver.xhtml?faces-redirect=true";
     }
     
     

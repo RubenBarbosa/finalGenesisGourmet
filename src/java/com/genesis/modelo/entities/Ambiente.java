@@ -103,7 +103,7 @@ public class Ambiente implements Serializable {
 
     @Override
     public String toString() {
-        return "com.genesis.modelo.entities.Ambiente[ idAmbiente=" + idAmbiente + " ]";
+        return "" +nombre;
     }
     
 }

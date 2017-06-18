@@ -19,46 +19,47 @@ and open the template in the editor.
             <div class="content-wrapper">
                 <section class="content-header">
                     <h1>
-                        Ambientes
+                        Tipo de Productos
                         <small>Genesis Gourmet</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#{request.contextPath}/app/home.xhtml"><i class="fa fa-home"></i> Inicio</a></li>
-                        <li class="active">Ver Ambientes</li>
+                        <li class="active">Ver Tipos de Productos</li>
                     </ol>
+                    <a href="#{request.contextPath}/app/administrador/tipoPoductos/registrar.xhtml"><i class="fa fa-list"></i> Crear nuevo tipo de producto</a>
                 </section>
-                <b:message for="listar-ambientes" showSummary="true" show-detail="true"/>
-                <h:form id="listar-ambientes" prependId="false">
+                <b:message for="listar-tipos" showSummary="true" show-detail="true"/>
+                <h:form id="listar-tipos" prependId="false">
                     <section class="content">
 
                         <div class="box">
                             <div class="box-header">
-                                <h3 class="box-title">Ver Ambientes</h3>
+                                <h3 class="box-title">Ver Tipos de productos</h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Id Ambiente</th>
-                                            <th>Nombre</th>
+                                            <th>Id Tipo Producto</th>
+                                            <th>Descripcion</th>
                                             <th></th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="#{listarAmbienteController.ambientes}" var="a">
+                                            <c:forEach items="#{listarTipoController.tipos}" var="t">
                                             <tr>
-                                                <td>#{a.idAmbiente}</td>
-                                                <td><h:outputText value="#{a.nombre}"/></td>
+                                                <td>#{t.idTipo}</td>
+                                                <td><h:outputText value="#{t.descripcion}"/></td>
                                                 <td>
                                                     <!--<h:commandLink class="fa fa-eye btn btn-primary btn-sm"  value="" />-->
                                                     <button type="button" class="btn btn-warning btn-sm fa fa-pencil" data-toggle="modal" data-target="#modalEdit"
-                                                            jsf:actionListener="#{ModificarAmbienteController.setAmbienteSeleccionado(a)}">
+                                                            jsf:actionListener="#{ModificarTipoController.setTipoSeleccionado(t)}">
                                                         <f:ajax event="click" render="info-modal-update"/>
                                                     </button>
                                                     <button type="button" class="btn btn-danger btn-sm fa fa-trash-o" data-toggle="modal" data-target="#myModal"
-                                                            jsf:actionListener="#{listarAmbienteController.setAmbienteSeleccionado(a)}">
+                                                            jsf:actionListener="#{listarTipoController.setTipoSeleccionado(t)}">
                                                         <f:ajax event="click" render="info-modal-delete"/>
                                                     </button>
                                                 </td>
@@ -74,15 +75,15 @@ and open the template in the editor.
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
-                                                    <h4 class="modal-title">Eliminar Ambiente</h4>
+                                                    <h4 class="modal-title">Eliminar Tipo Producto</h4>
                                                 </div>
                                                 <div class="modal-body">
                                                     <h:panelGroup id="info-modal-delete" layout="block">
-                                                        <p>¿Está seguro de eliminar el Ambiente #{listarAmbienteController.ambienteSeleccionado.idAmbiente} ?</p>
+                                                        <p>¿Está seguro de eliminar el Tipo de producto #{listarTipoController.tipoSeleccionado.descripcion} ?</p>
                                                     </h:panelGroup>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <h:commandButton class="btn btn-danger" value="Eliminar" actionListener="#{listarAmbienteController.eliminarAmbiente()}"/>
+                                                    <h:commandButton class="btn btn-danger" value="Eliminar" actionListener="#{listarTipoController.eliminarTipo()}"/>
                                                     <!--<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>-->
                                                 </div>
                                             </div>
@@ -107,10 +108,10 @@ and open the template in the editor.
 
 
                                                                 <div class="form-group">
-                                                                    <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+                                                                    <label for="descripcion" class="col-sm-2 control-label">Descripcion</label>
 
                                                                     <div class="col-sm-10">
-                                                                        <h:inputText  class="form-control" id="idAmbiente" a:placeholder="Nombre" value="#{ModificarAmbienteController.ambienteSeleccionado.nombre}"/>
+                                                                        <h:inputText  class="form-control" id="descripcion" a:placeholder="Descripcion" value="#{modificarTipoController.tipoSeleccionado.descripcion}"/>
                                                                     </div>
                                                                 </div>
 
@@ -119,7 +120,7 @@ and open the template in the editor.
                                                             </div>
                                                             <!-- /.box-footer -->
                                                             <div class="modal-footer">
-                                                                <h:commandButton class="btn btn-info btn btn-block" value="Actualizar" actionListener="#{ModificarAmbienteController.actualizarDatos()}"/>
+                                                                <h:commandButton class="btn btn-info btn btn-block" value="Actualizar" actionListener="#{modificarTipoController.actualizarDatos()}"/>
                                                                 <!--<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>-->
                                                             </div>
                                                         </h:form>

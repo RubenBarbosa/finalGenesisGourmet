@@ -45,16 +45,16 @@ public class ModificarController implements Serializable {
     public void actulaizarDatos(){
         try {
             ufl.edit(usuarioSeleccionado);
-            MessageUtil.enviarMensajeInformacion("listar-usuarios", "Actualización", "Los datos del usuarios se han actualizado correctamente.");
+            MessageUtil.enviarMensajeInformacion("form-edit-us", "Actualización", "Los datos del usuarios se han actualizado correctamente.");
         } catch (Exception e) {
             MessageUtil.enviarMensajeErrorGlobal("Error al modificar los datos del usuario", e.getStackTrace().toString());
         }
     }
     
-    public String preModificar(Usuario u){
-        setUsuarioSeleccionado(u);
-        return "/app/administrador/usuarios/listar.xhtml?faces-redirect=true";
-    }
+//    public String preModificar(Usuario u){
+//        setUsuarioSeleccionado(u);
+//        return "/app/administrador/usuarios/listar.xhtml?faces-redirect=true";
+//    }
     
     public void cambioDeEstado(Usuario u){
         try {
@@ -74,6 +74,6 @@ public class ModificarController implements Serializable {
     }
     
     public String getIconUsuarioBloqueo(Usuario u){
-        return (u.getEstado() == 1) ? "lock": "unlock";
+        return (u.getEstado() == 1) ? "unlock": "lock";
     }
 }

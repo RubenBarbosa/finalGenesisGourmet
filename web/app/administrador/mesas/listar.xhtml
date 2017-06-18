@@ -5,12 +5,200 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Mesas
+                        <small>Genesis Gourmet</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#{request.contextPath}/app/home.xhtml"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Ver Mesas</li>
+                    </ol>
+                </section>
+                <b:message for="listar-mesas" showSummary="true" show-detail="true"/>
+                <h:form id="listar-mesas" prependId="false">
+                    <section class="content">
+
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Ver Mesas</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>IdMesa</th>
+                                            <th>IdAmbiente</th>
+                                            <th>Estado Mesa</th>  
+                                            <th></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="#{listarMesasController.mesas}" var="m">
+                                            <tr>
+                                                <td>#{m.idMesa}</td>
+                                                <td><h:outputText value="#{m.idAmbiente}"/></td>
+                                                <td><h:outputText value="#{m.estadoMesa}"/></td>
+                                                <td>
+                                                    <!--<h:commandLink class="fa fa-eye btn btn-primary btn-sm"  value="" />-->
+                                                    <button type="button" class="btn btn-primary btn-sm fa fa-eye" data-toggle="modal" data-target="#modalSee"
+                                                            jsf:actionListener="#{verMesaController.verMesa(m)}">
+                                                        <f:ajax event="click" render="info-modal-see"/>
+                                                    </button>
+                                                    <button type="button" class="btn btn-warning btn-sm fa fa-pencil" data-toggle="modal" data-target="#modalEdit"
+                                                            jsf:actionListener="#{modificarMesaController.setMesaSeleccionada(m)}">
+                                                        <f:ajax event="click" render="info-modal-update"/>
+                                                    </button>
+
+                                                    <button type="button" class="btn btn-danger btn-sm fa fa-trash-o" data-toggle="modal" data-target="#myModal"
+                                                            jsf:actionListener="#{listarMesasController.setMesaSeleccionada(m)}">
+                                                        <f:ajax event="click" render="info-modal-delete"/>
+                                                    </button>
+                                                </td>
+
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                    <!--Inicio modal eliminar-->
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                                                    <h4 class="modal-title">Eliminar Mesas</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h:panelGroup id="info-modal-delete" layout="block">
+                                                        <p>¿Está seguro de eliminar la mesa #{listarMesasController.mesaSeleccionada.idMesa} ?</p>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <h:commandButton class="btn btn-danger" value="Eliminar" actionListener="#{listarMesasController.eliminarMesa()}"/>
+                                                    <!--<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Fin modal eliminar-->
+                                    <!--Inicio modal actualizar-->
+
+
+                                    <!--Inicio modal ver-->
+                                    <div id="modalSee" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                                                    <h4 class="modal-title">Datos de la mesa</h4>
+                                                </div>
+                                                <div class="modal-bod">
+                                                    <h:panelGroup id="info-modal-see" layout="block">
+                                                        <b:panelGrid colSm="12" columns="2">
+                                                            <h:outputText style="font-weight: bold;" value="IdMesa:"/>
+                                                            <h:outputText value="#{verMesaController.mesa.idMesa}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Id Ambiente:"/>
+                                                            <h:outputText value="#{verMesaController.mesa.idAmbiente.nombre}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Estado Mesa:"/>
+                                                            <h:outputText value="#{verMesaController.mesa.estadoMesa}"/>
+
+                                                        </b:panelGrid>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-info" data-dismiss="modal" >Aceptar</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Fin modal ver-->
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
+                    </section>
+
+                </h:form>
+            </div>
+            <div id="modalEdit" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                            <h4 class="modal-title">Actualización de datos</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h:panelGroup id="info-modal-update" layout="block">
+                                <b:message for="editar-mesas" showSummary="true" show-detail="true"/>
+                                <h:form class="form-horizontal" id="editar-mesas" prependId="false">
+                                    <div class="box-body">
+
+
+
+
+                                        <div class="form-group">
+                                            <label for="tipopro" class="col-sm-2 control-label">Id Amiente</label>
+                                            <div class="col-sm-10">
+                                                    <b:selectOneMenu value="#{registroMesaController.nuevaMesa.idAmbiente}">
+                                                    <!--Tipos de documentos -->
+                                                    <f:selectItems value="#{ambienteController.amientes}" var="a" itemLabel="#{a.nombre}"/>
+                                                </b:selectOneMenu>
+                                            </div>
+                                        </div>
+                                   
+                                    </div>
+                                    <!-- /.box-body -->
+
+                                    <!-- /.box-footer -->
+                                    <div class="modal-footer">
+                                        <h:commandButton class="btn btn-info btn btn-block" value="Actualizar" actionListener="#{modificarMesaController.actulaizarDatos()}"/>
+                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>-->
+                                    </div>
+                                </h:form>
+                            </h:panelGroup>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--Fin modal actualizar-->
+            <script>
+                $(function () {
+                    $("#example1").DataTable();
+                    $('#example2').DataTable({
+                        "paging": true,
+                        "lengthChange": false,
+                        "searching": false,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": false
+                    });
+                });
+            </script>
+
+        </ui:define>
+    </ui:composition>
+
 </html>

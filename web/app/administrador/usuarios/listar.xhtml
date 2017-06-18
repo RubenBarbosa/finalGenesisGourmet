@@ -102,7 +102,57 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                     <!--Fin modal eliminar-->
-                                    <!--Inicio modal actualizar-->
+         
+                                    <!--Inicio modal ver-->
+                                    <div id="modalSee" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                                                    <h4 class="modal-title">Datos de usuario</h4>
+                                                </div>
+                                                <div class="modal-bod">
+                                                    <h:panelGroup id="info-modal-see" layout="block">
+                                                        <b:panelGrid colSm="12" columns="2">
+                                                            <h:outputText style="font-weight: bold;" value="Cedula:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.cedula}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Tipo Documento:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.tipoDocumento.tipo}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Nombres:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.primerNombre} #{verUsuarioController.usuario.segundoNombre}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Apellidos:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.primerApellido} #{verUsuarioController.usuario.segundoApellido}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Correo:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.correo}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Telefono:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.telefono}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Direccion:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.direccion}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Estado:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.estado}"/>
+                                                        </b:panelGrid>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-info" data-dismiss="modal" >Aceptar</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Fin modal ver-->
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
+                    </section>
+
+                </h:form>
+                
+                                           <!--Inicio modal actualizar-->
                                     <div id="modalEdit" class="modal fade" role="dialog">
                                         <div class="modal-dialog">
 
@@ -114,7 +164,7 @@ and open the template in the editor.
                                                 </div>
                                                 <div class="modal-body">
                                                     <h:panelGroup id="info-modal-update" layout="block">
-                                                        <h:form class="form-horizontal" id="form-registro">
+                                                        <h:form class="form-horizontal" id="form-edit-us">
                                                             <div class="box-body">
 
 
@@ -165,66 +215,18 @@ and open the template in the editor.
                                                             <!-- /.box-body -->
 
                                                             <!-- /.box-footer -->
+                                                            <div class="modal-footer">
+                                                                <h:commandButton class="btn btn-info btn btn-block" value="Actualizar" actionListener="#{modificarController.actulaizarDatos()}"/>
+                                                                <!--<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>-->
+                                                            </div>
                                                         </h:form>
                                                     </h:panelGroup>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <h:commandButton class="btn btn-info btn btn-block" value="Actualizar" actionListener="#{modificarController.actulaizarDatos()}"/>
-                                                    <!--<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>-->
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                     <!--Fin modal actualizar-->
-                                    <!--Inicio modal ver-->
-                                    <div id="modalSee" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-
-
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
-                                                    <h4 class="modal-title">Datos de usuario</h4>
-                                                </div>
-                                                <div class="modal-bod">
-                                                    <h:panelGroup id="info-modal-see" layout="block">
-                                                        <b:panelGrid colSm="12" columns="2">
-                                                            <h:outputText style="font-weight: bold;" value="Cedula:"/>
-                                                            <h:outputText value="#{verUsuarioController.usuario.cedula}"/>
-                                                            <h:outputText style="font-weight: bold;" value="Tipo Documento:"/>
-                                                            <h:outputText value="#{verUsuarioController.usuario.tipoDocumento.tipo}"/>
-                                                            <h:outputText style="font-weight: bold;" value="Nombres:"/>
-                                                            <h:outputText value="#{verUsuarioController.usuario.primerNombre} #{verUsuarioController.usuario.segundoNombre}"/>
-                                                            <h:outputText style="font-weight: bold;" value="Apellidos:"/>
-                                                            <h:outputText value="#{verUsuarioController.usuario.primerApellido} #{verUsuarioController.usuario.segundoApellido}"/>
-                                                            <h:outputText style="font-weight: bold;" value="Correo:"/>
-                                                            <h:outputText value="#{verUsuarioController.usuario.correo}"/>
-                                                            <h:outputText style="font-weight: bold;" value="Telefono:"/>
-                                                            <h:outputText value="#{verUsuarioController.usuario.telefono}"/>
-                                                            <h:outputText style="font-weight: bold;" value="Direccion:"/>
-                                                            <h:outputText value="#{verUsuarioController.usuario.direccion}"/>
-                                                            <h:outputText style="font-weight: bold;" value="Estado:"/>
-                                                            <h:outputText value="#{verUsuarioController.usuario.estado}"/>
-                                                        </b:panelGrid>
-                                                    </h:panelGroup>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-info" data-dismiss="modal" >Aceptar</button>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!--Fin modal ver-->
-                                </table>
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-
-                    </section>
-
-                </h:form>
             </div>
             <script>
                 $(function () {

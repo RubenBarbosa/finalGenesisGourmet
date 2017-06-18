@@ -94,7 +94,7 @@ public class Producto implements Serializable {
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
-
+    
     @XmlTransient
     public List<Detallepedido> getDetallespedido() {
         return detallespedido;
